@@ -1,0 +1,25 @@
+# robots.txt для лаборатория-блеска.рф
+User-agent: *
+Allow: /
+
+# Разрешаем индексацию всех страниц
+Allow: /ceramic
+Allow: /polish
+Allow: /ppf
+Allow: /gallery
+Allow: /contacts
+Allow: /advice
+
+# Запрещаем индексацию служебных страниц
+Disallow: /x7k9m2
+Disallow: /privacy
+Disallow: /api/
+
+# Карта сайта
+Sitemap: https://blesklab.ru/sitemap.xml
+
+# Хост (для Яндекс)
+Host: https://blesklab.ru
+
+# Задержка между запросами для поисковых роботов
+Crawl-delay: 1
