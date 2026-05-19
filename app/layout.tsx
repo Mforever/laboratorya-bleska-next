@@ -1,42 +1,17 @@
+// app/layout.tsx
 import type { Metadata } from 'next';
-import { Montserrat } from 'next/font/google';
 import './globals.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { ModalProvider } from '@/contexts/ModalContext';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
-// Self-host шрифты (без запросов к Google)
-const montserrat = Montserrat({
-  subsets: ['cyrillic', 'latin'],
-  weight: ['400', '600', '700'],
-  display: 'swap',
-  variable: '--font-montserrat',
-  preload: true,
-  fallback: ['Arial', 'sans-serif'],
-});
-
 export const metadata: Metadata = {
-  metadataBase: new URL('https://blesklab.ru'),
   title: {
     default: 'Лаборатория блеска - Детейлинг студия в Омске',
     template: '%s | Лаборатория блеска'
   },
   description: 'Профессиональный детейлинг в Омске. Полировка, керамическое покрытие, бронирование пленкой.',
-  keywords: 'детейлинг, полировка, керамика, бронирование, Омск',
-  openGraph: {
-    title: 'Лаборатория блеска',
-    description: 'Профессиональный детейлинг в Омске',
-    url: 'https://blesklab.ru',
-    siteName: 'Лаборатория блеска',
-    images: [{ url: '/images/og-image.jpg' }],
-    locale: 'ru_RU',
-    type: 'website',
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
 };
 
 export default function RootLayout({
@@ -45,7 +20,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" className={montserrat.variable}>
+    <html lang="ru">
+      <head>
+        {/* Предзагрузка шрифтов для улучшения LCP */}
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="bg-bg-primary text-text-primary font-montserrat overflow-x-hidden">
         <ModalProvider>
           <Header />
