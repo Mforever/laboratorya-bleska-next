@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Icon } from '@/components/ui/Icon';
 
 interface Review {
   id: number;
@@ -78,10 +79,11 @@ const Reviews: React.FC = () => {
     return (
       <div className="flex gap-1">
         {[...Array(5)].map((_, i) => (
-          <i
+          <Icon
             key={i}
-            className={`fas fa-star text-xs ${i < rating ? 'text-accent' : 'text-text-secondary/30'}`}
-          ></i>
+            name="fa-star"
+            className={`text-xs ${i < rating ? 'text-accent' : 'text-text-secondary/30'}`}
+          />
         ))}
       </div>
     );
@@ -133,7 +135,7 @@ const Reviews: React.FC = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-hover text-bg-primary rounded-lg transition-all text-sm font-medium"
           >
-            <i className="fab fa-yandex"></i>
+            <Icon name="fab fa-yandex" />
             Читать отзывы на Яндекс Картах
           </a>
           <a
@@ -142,7 +144,7 @@ const Reviews: React.FC = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 border border-accent text-accent hover:bg-accent hover:text-bg-primary rounded-lg transition-all text-sm font-medium"
           >
-            <i className="fas fa-map-marker-alt"></i>
+            <Icon name="fa-map-marker-alt" />
             Читать отзывы на 2ГИС
           </a>
         </div>
@@ -154,7 +156,7 @@ const Reviews: React.FC = () => {
               onClick={openModalHandler}
               className="px-5 py-2 border border-accent text-accent hover:bg-accent hover:text-bg-primary rounded-lg transition-all text-sm"
             >
-              <i className="fas fa-pen mr-2"></i>
+              <Icon name="fa-pen" className="mr-2" />
               Оставить отзыв
             </button>
           </div>
@@ -184,7 +186,7 @@ const Reviews: React.FC = () => {
                       </div>
                       {review.verified && (
                         <div className="text-accent/60 text-xs" title="Подтверждённый отзыв">
-                          <i className="fas fa-check-circle"></i>
+                          <Icon name="fa-check-circle" />
                         </div>
                       )}
                     </div>
@@ -203,7 +205,7 @@ const Reviews: React.FC = () => {
                     onClick={() => setVisibleCount(prev => prev + 3)}
                     className="px-6 py-2 border border-accent text-accent hover:bg-accent hover:text-bg-primary rounded-lg transition-all text-sm"
                   >
-                    <i className="fas fa-chevron-down mr-2"></i>
+                    <Icon name="fa-chevron-down" className="mr-2" />
                     Показать ещё
                   </button>
                 </div>
@@ -236,7 +238,7 @@ const Reviews: React.FC = () => {
                     onClick={closeModalHandler}
                     className="w-8 h-8 rounded-lg bg-bg-secondary hover:bg-accent hover:text-bg-primary text-text-secondary transition-colors flex items-center justify-center"
                   >
-                    <i className="fas fa-times"></i>
+                    <Icon name="fa-times" />
                   </button>
                 </div>
 
@@ -283,9 +285,10 @@ const Reviews: React.FC = () => {
                           onClick={() => setNewReview({ ...newReview, rating: star })}
                           className="focus:outline-none"
                         >
-                          <i
-                            className={`fas fa-star text-xl ${star <= newReview.rating ? 'text-accent' : 'text-text-secondary/30'}`}
-                          ></i>
+                          <Icon
+                            name="fa-star"
+                            className={`text-xl ${star <= newReview.rating ? 'text-accent' : 'text-text-secondary/30'}`}
+                          />
                         </button>
                       ))}
                     </div>

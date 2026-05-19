@@ -1,9 +1,9 @@
-// components/layout/Footer.tsx
 'use client';
 
 import React, { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Logo from '../ui/Logo';
+import { Icon } from '@/components/ui/Icon';
 
 const Footer: React.FC = () => {
   const router = useRouter();
@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
   };
 
   const socialLinks = [
-    { name: 'Telegram', icon: 'fab fa-telegram-plane', url: 'https://t.me/rudenko_ds' },
+    { name: 'Telegram', icon: 'fab fa-telegram', url: 'https://t.me/rudenko_ds' },
     { name: 'VK Видео', icon: 'fab fa-vk', url: 'https://vkvideo.ru/@labofgloss' },
     { name: 'Instagram', icon: 'fab fa-instagram', url: 'https://instagram.com/labofgloss' }
   ];
@@ -58,13 +58,13 @@ const Footer: React.FC = () => {
                 <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer"
                   className="w-9 h-9 rounded-lg bg-white/5 hover:bg-accent hover:text-bg-primary text-accent flex items-center justify-center transition-all duration-300"
                   aria-label={social.name}>
-                  <i className={`${social.icon} text-sm`}></i>
+                  <Icon name={social.icon} className="text-sm" />
                 </a>
               ))}
               <div className="relative" onMouseEnter={handleQrMouseEnter} onMouseLeave={handleQrMouseLeave}>
                 <div className="w-9 h-9 rounded-lg bg-white/5 hover:bg-accent hover:text-bg-primary text-accent flex items-center justify-center transition-all duration-300 cursor-pointer"
                   aria-label="MAX">
-                  <i className="fas fa-qrcode text-sm"></i>
+                  <Icon name="fa-qrcode" className="text-sm" />
                 </div>
                 {showQr && (
                   <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 p-2 bg-bg-element rounded-xl shadow-xl border border-white/10 z-20 min-w-[140px]">
@@ -102,10 +102,22 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-semibold text-text-primary mb-4 text-sm uppercase tracking-wider">Контакты</h4>
             <ul className="space-y-3">
-              <li className="flex items-start gap-3"><i className="fas fa-phone-alt text-accent text-xs mt-1 w-4 shrink-0"></i><a href="tel:+79620555858" className="text-text-secondary hover:text-accent text-sm transition-colors break-all">+7 (962) 055-58-58</a></li>
-              <li className="flex items-start gap-3"><i className="fab fa-telegram text-accent text-xs mt-1 w-4 shrink-0"></i><a href="https://t.me/rudenko_ds" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent text-sm transition-colors">@rudenko_ds</a></li>
-              <li className="flex items-start gap-3"><i className="fas fa-map-marker-alt text-accent text-xs mt-1 w-4 shrink-0"></i><span className="text-text-secondary text-sm leading-relaxed">Омск, Чкаловский м/р, ул. Индустриальная, 5Б</span></li>
-              <li className="flex items-start gap-3"><i className="fas fa-clock text-accent text-xs mt-1 w-4 shrink-0"></i><span className="text-text-secondary text-sm">Ежедневно: 10:00 – 20:00</span></li>
+              <li className="flex items-start gap-3">
+                <Icon name="fa-phone-alt" className="text-accent text-xs mt-1 w-4 shrink-0" />
+                <a href="tel:+79620555858" className="text-text-secondary hover:text-accent text-sm transition-colors break-all">+7 (962) 055-58-58</a>
+              </li>
+              <li className="flex items-start gap-3">
+                <Icon name="fab fa-telegram" className="text-accent text-xs mt-1 w-4 shrink-0" />
+                <a href="https://t.me/rudenko_ds" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent text-sm transition-colors">@rudenko_ds</a>
+              </li>
+              <li className="flex items-start gap-3">
+                <Icon name="fa-map-marker-alt" className="text-accent text-xs mt-1 w-4 shrink-0" />
+                <span className="text-text-secondary text-sm leading-relaxed">Омск, Чкаловский м/р, ул. Индустриальная, 5Б</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Icon name="fa-clock" className="text-accent text-xs mt-1 w-4 shrink-0" />
+                <span className="text-text-secondary text-sm">Ежедневно: 10:00 – 20:00</span>
+              </li>
             </ul>
           </div>
         </div>

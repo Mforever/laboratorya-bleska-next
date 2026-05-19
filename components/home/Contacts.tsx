@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useYandexGoal } from '@/hooks/useYandexGoal';
+import { Icon } from '@/components/ui/Icon';
 
 const ContactsHome: React.FC = () => {
   const { sendGoal } = useYandexGoal();
@@ -18,7 +19,7 @@ const ContactsHome: React.FC = () => {
   const contactCards = [
     {
       id: 'address',
-      icon: 'fas fa-map-marker-alt',
+      icon: 'fa-map-marker-alt',
       title: 'Адрес',
       lines: ['Омск, Чкаловский м/р', 'ул. Индустриальная, 5Б'],
       workingHours: 'Ежедневно: 10:00–20:00',
@@ -29,7 +30,7 @@ const ContactsHome: React.FC = () => {
     },
     {
       id: 'phone',
-      icon: 'fas fa-phone-alt',
+      icon: 'fa-phone-alt',
       title: 'Телефон',
       lines: ['+7 (962) 055-58-58'],
       buttonText: 'Позвонить',
@@ -70,7 +71,7 @@ const ContactsHome: React.FC = () => {
             >
               <div className="flex flex-col items-center text-center flex-1">
                 <div className="w-14 h-14 bg-accent/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-                  <i className={`${card.icon} text-accent text-xl`}></i>
+                  <Icon name={card.icon} className="text-accent text-xl" />
                 </div>
                 <h3 className="font-bold text-lg mb-3">{card.title}</h3>
                 <div className="mb-3">
@@ -95,7 +96,7 @@ const ContactsHome: React.FC = () => {
                     rel={card.buttonLink.startsWith('http') ? 'noopener noreferrer' : undefined}
                   >
                     {card.buttonText}
-                    <i className="fas fa-arrow-right text-xs ml-2"></i>
+                    <Icon name="fa-arrow-right" className="text-xs ml-2" />
                   </a>
                 </div>
               </div>

@@ -1,7 +1,7 @@
 // app/layout.tsx
 import type { Metadata } from 'next';
 import './globals.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
+// Удалите эту строку: import '@fortawesome/fontawesome-free/css/all.min.css';
 import { ModalProvider } from '@/contexts/ModalContext';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -22,20 +22,7 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <head>
-        {/* Предзагрузка шрифтов для улучшения LCP */}
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
-          rel="stylesheet"
-        />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body className="bg-bg-primary text-text-primary font-montserrat overflow-x-hidden">
         <ModalProvider>

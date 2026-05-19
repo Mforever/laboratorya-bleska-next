@@ -2,25 +2,26 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Icon } from '@/components/ui/Icon';
 
 const ADVANTAGES = [
   {
-    icon: 'fas fa-shield-alt',
+    icon: 'fa-shield-alt',
     title: 'Профессиональное оборудование',
     description: 'Работаем на оборудовании RUPES и 3M'
   },
   {
-    icon: 'fas fa-clock',
+    icon: 'fa-clock',
     title: 'Соблюдаем сроки',
     description: 'Сдаем авто вовремя, без задержек'
   },
   {
-    icon: 'fas fa-medal',
+    icon: 'fa-medal',
     title: '5 лет на рынке',
     description: 'Опыт работы с премиальными авто'
   },
   {
-    icon: 'fas fa-handshake',
+    icon: 'fa-handshake',
     title: 'Гарантия качества',
     description: 'Даем гарантию на все виды работ'
   }
@@ -66,7 +67,10 @@ const Advantages: React.FC = () => {
               className="bg-bg-element rounded-xl p-6 text-center hover:scale-105 transition-all duration-300 flex flex-col h-full group"
             >
               <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                <i className={`${advantage.icon} text-2xl text-bg-primary`}></i>
+                <Icon
+                  name={advantage.icon as any}
+                  className="text-2xl text-bg-primary"
+                />
               </div>
               <h3 className="text-xl font-semibold mb-2 break-words">{advantage.title}</h3>
               <p className="text-text-secondary text-sm leading-relaxed break-words hyphens-auto">

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useModalContext } from '@/contexts/ModalContext';
+import { Icon } from '@/components/ui/Icon';
 
 interface FAQItem {
   id: number;
@@ -83,14 +84,14 @@ const FAQ: React.FC = () => {
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
-                      <i className="fas fa-question text-accent text-xs"></i>
+                      <Icon name="fa-question" className="text-accent text-xs" />
                     </div>
                     <span className="font-medium text-text-primary text-base md:text-lg">
                       {item.question}
                     </span>
                   </div>
                   <div className={`w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center transition-all duration-300 ${openId === item.id ? 'rotate-180 bg-accent/20' : ''}`}>
-                    <i className="fas fa-chevron-down text-accent text-xs"></i>
+                    <Icon name="fa-chevron-down" className="text-accent text-xs" />
                   </div>
                 </button>
 

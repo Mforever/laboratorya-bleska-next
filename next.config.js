@@ -13,6 +13,16 @@ const nextConfig = {
       },
     ],
   },
+  // Оптимизация бандла
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
+  // Разделение кода
+  modularizeImports: {
+    "@fortawesome/fontawesome-free": {
+      transform: "@fortawesome/fontawesome-free/lib/icons/{member}",
+    },
+  },
 };
 
 module.exports = nextConfig;

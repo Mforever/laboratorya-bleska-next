@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '../ui/Logo';
 import { useYandexGoal } from '@/hooks/useYandexGoal';
 import { useModalContext } from '@/contexts/ModalContext';
+import { Icon } from '@/components/ui/Icon';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -95,8 +96,7 @@ const Header: React.FC = () => {
                         }`}
                     >
                       {item.label}
-                      <i className={`fas fa-chevron-down text-xs transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180' : ''
-                        }`}></i>
+                      <Icon name="fa-chevron-down" className={`text-xs transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180' : ''}`} />
                     </button>
 
                     <AnimatePresence>
@@ -146,7 +146,7 @@ const Header: React.FC = () => {
               onClick={handlePhoneClick}
               className="flex items-center gap-2 text-accent hover:text-accent-hover transition-colors"
             >
-              <i className="fas fa-phone-alt text-sm"></i>
+              <Icon name="fa-phone-alt" className="text-sm" />
               <span className="text-sm font-medium">+7 (962) 055-58-58</span>
             </a>
             <button
@@ -163,7 +163,7 @@ const Header: React.FC = () => {
             className="md:hidden w-10 h-10 rounded-lg bg-white/5 hover:bg-accent/20 text-text-secondary hover:text-accent transition-all flex items-center justify-center"
             aria-label="Меню"
           >
-            <i className={`fas fa-${isOpen ? 'times' : 'bars'} text-lg`}></i>
+            <Icon name={isOpen ? 'fa-times' : 'fa-bars'} className="text-lg" />
           </button>
         </nav>
 
@@ -221,7 +221,7 @@ const Header: React.FC = () => {
                     onClick={handlePhoneClick}
                     className="flex items-center gap-3 px-4 py-3 text-accent hover:bg-bg-element rounded-lg transition-colors"
                   >
-                    <i className="fas fa-phone-alt"></i>
+                    <Icon name="fa-phone-alt" />
                     <span className="text-sm font-medium">+7 (962) 055-58-58</span>
                   </a>
                   <button

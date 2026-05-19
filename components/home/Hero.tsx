@@ -23,11 +23,7 @@ const Hero: React.FC = () => {
     <section className="relative pt-32 pb-20 overflow-hidden">
       {imageLoaded && (
         <div className="absolute inset-0 z-0">
-          <img
-            src="/images/hero-background.jpg"
-            alt="Детейлинг студия фон"
-            className="w-full h-full object-cover"
-          />
+          <img src="/images/hero-background.jpg" alt="Детейлинг студия фон" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-bg-primary/70 via-bg-primary/60 to-bg-primary/50" />
           <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/40 via-transparent to-transparent" />
         </div>
@@ -35,12 +31,7 @@ const Hero: React.FC = () => {
 
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center lg:text-left"
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center lg:text-left">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Снова <span className="text-accent">как новый</span>
             </h1>
@@ -48,15 +39,9 @@ const Hero: React.FC = () => {
               Вернем блеск нового авто. Полировка, керамика, бронирование в Омске
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-              <Button size="large" onClick={() => handleServiceClick('/polish')}>
-                Полировка
-              </Button>
-              <Button variant="outline" size="large" onClick={() => handleServiceClick('/ceramic')}>
-                Керамика
-              </Button>
-              <Button variant="outline" size="large" onClick={() => handleServiceClick('/ppf')}>
-                Бронирование
-              </Button>
+              <Button size="large" onClick={() => handleServiceClick('/polish')}>Полировка</Button>
+              <Button variant="outline" size="large" onClick={() => handleServiceClick('/ceramic')}>Керамика</Button>
+              <Button variant="outline" size="large" onClick={() => handleServiceClick('/ppf')}>Бронирование</Button>
             </div>
 
             <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/10 max-w-md mx-auto lg:mx-0">
