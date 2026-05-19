@@ -7,15 +7,15 @@ import { ModalProvider } from '@/contexts/ModalContext';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
-// Исправление: добавляем display swap и указываем веса
+// Настройка шрифта с self-hosting (не будет запросов к Google)
 const montserrat = Montserrat({
   subsets: ['cyrillic', 'latin'],
   weight: ['400', '600', '700'],
   display: 'swap',
   variable: '--font-montserrat',
-  fallback: ['Arial', 'sans-serif'],
-  // Опционально: предзагрузка
+  // Важно: preload только нужные подмножества
   preload: true,
+  fallback: ['Arial', 'sans-serif'],
 });
 
 export const metadata: Metadata = {
