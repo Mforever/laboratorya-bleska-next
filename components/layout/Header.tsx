@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '../ui/Logo';
-import Icon from '../ui/Icon';
 import { useYandexGoal } from '@/hooks/useYandexGoal';
 import { useModalContext } from '@/contexts/ModalContext';
 
@@ -12,6 +11,7 @@ const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const router = useRouter();
   const { sendGoal } = useYandexGoal();
@@ -31,8 +31,10 @@ const Header: React.FC = () => {
   }, [pathname]);
 
   useEffect(() => {
-    const handleClickOutside = () => {
-      setActiveDropdown(null);
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setActiveDropdown(null);
+      }
     };
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
@@ -68,6 +70,8 @@ const Header: React.FC = () => {
 
   const handleNavigation = (path: string) => {
     router.push(path);
+    setActiveDropdown(null);
+    setIsOpen(false);
   };
 
   return (
@@ -79,15 +83,12 @@ const Header: React.FC = () => {
     >
       <div className="container-custom">
         <nav className="flex items-center justify-between gap-2 md:gap-4">
-          {/* Логотип - фиксированный размер */}
-          <div className="flex-shrink-0">
-            <Logo variant="light" showText={true} />
-          </div>
+          <Logo variant="light" showText={true} />
 
-          {/* Desktop Menu - скрывается на планшетах и мобильных */}
+          {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-1 xl:gap-2">
             {menuItems.map((item) => (
-              <div key={item.label} className="relative">
+              <div key={item.label} className="relative" ref={item.dropdown ? dropdownRef : null}>
                 {item.dropdown ? (
                   <>
                     <button
@@ -98,8 +99,10 @@ const Header: React.FC = () => {
                         }`}
                     >
                       {item.label}
-                      <i className={`fas fa-chevron-down text-xs transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180' : ''
-                        }`}></i>
+                      <i
+                        className={`fas fa-chevron-down text-xs transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180' : ''
+                          }`}
+                      ></i>
                     </button>
 
                     <AnimatePresence>
@@ -114,10 +117,7 @@ const Header: React.FC = () => {
                           {item.dropdown.map((subitem) => (
                             <button
                               key={subitem.path}
-                              onClick={() => {
-                                handleNavigation(subitem.path);
-                                setActiveDropdown(null);
-                              }}
+                              onClick={() => handleNavigation(subitem.path)}
                               className="w-full text-left px-4 py-3 text-text-secondary hover:text-accent hover:bg-bg-element transition-colors text-sm"
                             >
                               {subitem.label}
@@ -142,7 +142,7 @@ const Header: React.FC = () => {
             ))}
           </div>
 
-          {/* Desktop Right - номер телефона и кнопка */}
+          {/* Desktop Right */}
           <div className="hidden lg:flex items-center gap-3 xl:gap-4">
             <a
               href="tel:+79620555858"
@@ -161,13 +161,13 @@ const Header: React.FC = () => {
             </button>
           </div>
 
-          {/* Mobile Menu Button - всегда видна на lg и ниже */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden w-10 h-10 rounded-lg bg-white/5 hover:bg-accent/20 text-text-secondary hover:text-accent transition-all flex items-center justify-center flex-shrink-0"
+            className="lg:hidden w-10 h-10 rounded-lg bg-accent hover:bg-accent-hover transition-all flex items-center justify-center flex-shrink-0 shadow-lg"
             aria-label="Меню"
           >
-            <Icon name="fa-bars" className="text-lg text-white" />
+            <i className={`fas fa-${isOpen ? 'times' : 'bars'} text-lg text-white`}></i>
           </button>
         </nav>
 
@@ -192,10 +192,7 @@ const Header: React.FC = () => {
                         {item.dropdown.map((subitem) => (
                           <button
                             key={subitem.path}
-                            onClick={() => {
-                              handleNavigation(subitem.path);
-                              setIsOpen(false);
-                            }}
+                            onClick={() => handleNavigation(subitem.path)}
                             className="w-full text-left px-8 py-3 text-text-secondary hover:text-accent hover:bg-bg-element transition-colors text-sm"
                           >
                             {subitem.label}
@@ -204,10 +201,7 @@ const Header: React.FC = () => {
                       </div>
                     ) : (
                       <button
-                        onClick={() => {
-                          handleNavigation(item.path);
-                          setIsOpen(false);
-                        }}
+                        onClick={() => handleNavigation(item.path)}
                         className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${pathname === item.path
                             ? 'bg-accent text-bg-primary'
                             : 'text-text-secondary hover:bg-bg-element'
