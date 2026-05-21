@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { useModalContext } from '@/contexts/ModalContext';
 import Button from '@/components/ui/Button';
 import PromoBlock from '@/components/ui/PromoBlock';
+import { Icon } from '@/components/ui/Icon';
 
 declare const ym: any;
 
@@ -25,10 +27,10 @@ export default function CeramicClient() {
   };
 
   const benefits = [
-    { icon: 'fas fa-tint', title: 'Гидрофобный эффект', description: 'Вода скатывается шариками, авто дольше остается чистым' },
-    { icon: 'fas fa-shield-alt', title: 'Защита от царапин', description: 'Твердость покрытия 9H защищает от мелких механических воздействий' },
-    { icon: 'fas fa-sun', title: 'Защита от УФ', description: 'Предотвращает выгорание краски и старение ЛКП' },
-    { icon: 'fas fa-flask', title: 'Химическая стойкость', description: 'Устойчивость к реагентам, битуму и птичьему помету' }
+    { icon: 'fa-tint', title: 'Гидрофобный эффект', description: 'Вода скатывается шариками, авто дольше остается чистым' },
+    { icon: 'fa-shield-alt', title: 'Защита от царапин', description: 'Твердость покрытия 9H защищает от мелких механических воздействий' },
+    { icon: 'fa-sun', title: 'Защита от УФ', description: 'Предотвращает выгорание краски и старение ЛКП' },
+    { icon: 'fa-flask', title: 'Химическая стойкость', description: 'Устойчивость к реагентам, битуму и птичьему помету' }
   ];
 
   const steps = [
@@ -72,9 +74,7 @@ export default function CeramicClient() {
       answer: (
         <>
           Да! Керамика защищает от ультрафиолета и реагентов, но от камней и сколов она не спасёт. Для максимальной защиты уязвимых зон рекомендуем бронирование плёнкой. Подробнее в статье{' '}
-          <a href="/advice/headlights-yellowing-repair" className="text-accent hover:underline">
-            Защита фар: почему это дешевле, чем замена
-          </a>.
+          <a href="/advice/headlights-yellowing-repair" className="text-accent hover:underline">Защита фар: почему это дешевле, чем замена</a>.
         </>
       )
     },
@@ -83,87 +83,46 @@ export default function CeramicClient() {
       answer: (
         <>
           Первые 7 дней — нельзя мочить авто (период кристаллизации). После — только бесконтактная мойка или{' '}
-          <a href="/advice/wrong-washing" className="text-accent hover:underline">
-            ручная мойка по принципу двух вёдер
-          </a>{' '}
+          <a href="/advice/wrong-washing" className="text-accent hover:underline">ручная мойка по принципу двух вёдер</a>{' '}
           с мягкой микрофиброй. Также рекомендуем профессиональную 2-3 фазную мойку. Никогда не используйте щётки и абразивные средства. Подробнее о правильном уходе читайте в статье{' '}
-          <a href="/advice/self-care-after-detailing" className="text-accent hover:underline">
-            Как ухаживать за авто после детейлинга
-          </a>.
+          <a href="/advice/self-care-after-detailing" className="text-accent hover:underline">Как ухаживать за авто после детейлинга</a>.
         </>
       )
     }
   ];
 
-  // Пути к фото составов
   const fc8Image = '/images/hendlex-fc8.jpg';
   const fc15Image = '/images/hendlex-fc15.jpg';
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-bg-primary overflow-x-hidden">
-      {/* Hero секция с параллакс-эффектом */}
-      <section
-        className="relative pt-32 pb-20 overflow-hidden min-h-[600px] flex items-center parallax-bg-fixed"
-        style={{
-          backgroundImage: "url('/images/ceramic-hero.jpg')",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundAttachment: "fixed",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-bg-primary via-bg-primary/95 to-bg-primary/90 z-0" />
-
+      {/* Hero секция */}
+      <section className="relative pt-32 pb-20 overflow-hidden min-h-[600px] flex items-center">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/ceramic-hero.jpg" alt="Керамическое покрытие" fill priority className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-bg-primary via-bg-primary/95 to-bg-primary/90" />
+        </div>
         <div className="container-custom relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Левая колонка - текст */}
             <div className="max-w-3xl">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <span className="inline-block text-accent font-medium text-sm uppercase tracking-[0.2em] mb-4">
-                  Услуга
-                </span>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                  Керамическое покрытие
-                </h1>
-                <p className="text-text-secondary text-lg mb-8 max-w-2xl">
-                  Защита кузова от ультрафиолета, реагентов и мелких царапин. Гидрофобный эффект и глубокий блеск на годы.
-                </p>
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+                <span className="inline-block text-accent font-medium text-sm uppercase tracking-[0.2em] mb-4">Услуга</span>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">Керамическое покрытие</h1>
+                <p className="text-text-secondary text-lg mb-8 max-w-2xl">Защита кузова от ультрафиолета, реагентов и мелких царапин. Гидрофобный эффект и глубокий блеск на годы.</p>
                 <div className="flex flex-wrap gap-4">
                   <Button size="large" onClick={() => openBookingModal()}>Рассчитать стоимость</Button>
                   <Button variant="outline" size="large" onClick={() => router.push('/gallery')}>Смотреть работы</Button>
                 </div>
               </motion.div>
             </div>
-
-            {/* Правая колонка - видео */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative hidden lg:block"
-            >
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl group h-[400px]">
-                <iframe
-                  src="https://vkvideo.ru/video_ext.php?oid=-99576867&id=456239037&hash=fcdd6247d4c3aa76&hd=4&autoplay=1&loop=1&mute=1"
-                  className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2"
-                  allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
-                  frameBorder="0"
-                />
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.2 }} className="relative hidden lg:block">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl group h-[400px] bg-black">
+                <iframe src="https://vkvideo.ru/video_ext.php?oid=-99576867&id=456239037&hash=fcdd6247d4c3aa76&hd=4&autoplay=1&loop=1&mute=1" className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameBorder="0" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-4 left-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-3">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <i className="fas fa-tint text-accent text-sm"></i>
-                      <span className="text-white text-xs">Гидрофобный эффект 115°</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <i className="fas fa-shield-alt text-accent text-sm"></i>
-                      <span className="text-white text-xs">Защита до 5 лет</span>
-                    </div>
+                    <div className="flex items-center gap-2"><Icon name="fa-tint" className="text-accent text-sm" /><span className="text-white text-xs">Гидрофобный эффект 115°</span></div>
+                    <div className="flex items-center gap-2"><Icon name="fa-shield-alt" className="text-accent text-sm" /><span className="text-white text-xs">Защита до 5 лет</span></div>
                   </div>
                 </div>
               </div>
@@ -181,16 +140,9 @@ export default function CeramicClient() {
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-bg-element rounded-xl p-5 md:p-6 text-center hover:scale-105 transition-all duration-300 flex flex-col h-full"
-              >
+              <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="bg-bg-element rounded-xl p-5 md:p-6 text-center hover:scale-105 transition-all duration-300 flex flex-col h-full">
                 <div className="w-14 h-14 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4 flex-shrink-0">
-                  <i className={`${benefit.icon} text-accent text-xl`}></i>
+                  <Icon name={benefit.icon} className="text-accent text-xl" />
                 </div>
                 <h3 className="font-semibold mb-2 text-base md:text-lg break-words">{benefit.title}</h3>
                 <p className="text-text-secondary text-sm md:text-base leading-relaxed break-words hyphens-auto">{benefit.description}</p>
@@ -270,12 +222,7 @@ export default function CeramicClient() {
             <p className="text-text-secondary text-sm md:text-base max-w-2xl mx-auto">Посмотрите, как выглядит автомобиль после нанесения керамики</p>
           </motion.div>
           <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-black shadow-2xl mx-auto">
-            <iframe
-              src="https://vkvideo.ru/video_ext.php?oid=-99576867&id=456239032&hash=8ae3ee7e1b5e4e5c&hd=4&autoplay=1&loop=1&mute=1"
-              className="absolute top-0 left-0 w-full h-full"
-              allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
-              frameBorder="0"
-            />
+            <iframe src="https://vkvideo.ru/video_ext.php?oid=-99576867&id=456239032&hash=8ae3ee7e1b5e4e5c&hd=4&autoplay=1&loop=1&mute=1" className="absolute top-0 left-0 w-full h-full" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameBorder="0" />
           </div>
         </div>
       </section>
@@ -283,29 +230,14 @@ export default function CeramicClient() {
       {/* Два варианта покрытия */}
       <section className="py-20 bg-bg-secondary">
         <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <span className="inline-block text-accent font-medium text-sm uppercase tracking-[0.2em] mb-4">
-              Два варианта защиты
-            </span>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+            <span className="inline-block text-accent font-medium text-sm uppercase tracking-[0.2em] mb-4">Два варианта защиты</span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Выберите подходящий</h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
-              Базовое покрытие до 2 лет или премиум-защита с ежегодным обслуживанием до 5 лет
-            </p>
+            <p className="text-text-secondary max-w-2xl mx-auto">Базовое покрытие до 2 лет или премиум-защита с ежегодным обслуживанием до 5 лет</p>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8">
-            {/* Базовое покрытие */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-bg-element rounded-2xl p-6 md:p-8 border border-white/10 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5"
-            >
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-bg-element rounded-2xl p-6 md:p-8 border border-white/10 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-2xl font-bold text-text-primary">Базовое покрытие</h3>
                 <span className="bg-accent/20 text-accent text-xs px-3 py-1 rounded-full">Hendlex FC8</span>
@@ -313,33 +245,19 @@ export default function CeramicClient() {
               <p className="text-text-secondary text-sm mb-4">Однократное нанесение профессиональной нанокерамики</p>
               <div className="text-3xl font-bold text-accent mb-6">от 22 000 ₽</div>
               <div className="space-y-3 mb-6">
-                <div className="flex items-center gap-2 text-sm"><i className="fas fa-check-circle text-accent w-5"></i> Срок службы: <span className="font-semibold">до 2 лет</span></div>
-                <div className="flex items-center gap-2 text-sm"><i className="fas fa-check-circle text-accent w-5"></i> Гидрофобность: <span className="font-semibold">115°</span></div>
-                <div className="flex items-center gap-2 text-sm"><i className="fas fa-check-circle text-accent w-5"></i> Защита от УФ и реагентов</div>
-                <div className="flex items-center gap-2 text-sm"><i className="fas fa-check-circle text-accent w-5"></i> Насыщение цвета и глубокий блеск</div>
-                <div className="flex items-center gap-2 text-sm"><i className="fas fa-check-circle text-accent w-5"></i> Обслуживание: <span className="font-semibold">не требуется</span></div>
+                <div className="flex items-center gap-2 text-sm"><Icon name="fa-check-circle" className="text-accent w-5" /><span>Срок службы: <span className="font-semibold">до 2 лет</span></span></div>
+                <div className="flex items-center gap-2 text-sm"><Icon name="fa-check-circle" className="text-accent w-5" /><span>Гидрофобность: <span className="font-semibold">115°</span></span></div>
+                <div className="flex items-center gap-2 text-sm"><Icon name="fa-check-circle" className="text-accent w-5" /><span>Защита от УФ и реагентов</span></div>
+                <div className="flex items-center gap-2 text-sm"><Icon name="fa-check-circle" className="text-accent w-5" /><span>Насыщение цвета и глубокий блеск</span></div>
+                <div className="flex items-center gap-2 text-sm"><Icon name="fa-check-circle" className="text-accent w-5" /><span>Обслуживание: <span className="font-semibold">не требуется</span></span></div>
               </div>
               <div className="bg-accent/5 rounded-lg p-3 mb-6 border border-accent/10">
-                <p className="text-text-secondary text-xs">
-                  <span className="text-accent font-semibold">Честно о сроках:</span> Максимальный срок — до 2 лет.
-                  Реалистично: 12-18 месяцев при средних условиях эксплуатации.
-                </p>
+                <p className="text-text-secondary text-xs"><span className="text-accent font-semibold">Честно о сроках:</span> Максимальный срок — до 2 лет. Реалистично: 12-18 месяцев при средних условиях эксплуатации.</p>
               </div>
-              <button
-                onClick={() => openBookingModal('base')}
-                className="w-full py-3 bg-accent hover:bg-accent-hover text-bg-primary rounded-lg transition-all duration-300 hover:scale-105"
-              >
-                Записаться
-              </button>
+              <button onClick={() => openBookingModal('base')} className="w-full py-3 bg-accent hover:bg-accent-hover text-bg-primary rounded-lg transition-all duration-300 hover:scale-105">Записаться</button>
             </motion.div>
 
-            {/* Премиум-защита */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-bg-element rounded-2xl p-6 md:p-8 border border-white/10 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5"
-            >
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-bg-element rounded-2xl p-6 md:p-8 border border-white/10 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-2xl font-bold text-text-primary">Премиум-защита</h3>
                 <span className="bg-accent/20 text-accent text-xs px-3 py-1 rounded-full">FC8 + FC15</span>
@@ -347,24 +265,16 @@ export default function CeramicClient() {
               <p className="text-text-secondary text-sm mb-4">Базовое покрытие + ежегодное обслуживание</p>
               <div className="text-3xl font-bold text-accent mb-6">от 32 000 ₽</div>
               <div className="space-y-3 mb-6">
-                <div className="flex items-center gap-2 text-sm"><i className="fas fa-check-circle text-accent w-5"></i> Срок службы: <span className="font-semibold">до 5 лет</span></div>
-                <div className="flex items-center gap-2 text-sm"><i className="fas fa-check-circle text-accent w-5"></i> Ежегодное обслуживание: <span className="font-semibold">включено</span></div>
-                <div className="flex items-center gap-2 text-sm"><i className="fas fa-check-circle text-accent w-5"></i> Обновление гидрофобности каждый год</div>
-                <div className="flex items-center gap-2 text-sm"><i className="fas fa-check-circle text-accent w-5"></i> Дефектовка и диагностика покрытия</div>
-                <div className="flex items-center gap-2 text-sm"><i className="fas fa-check-circle text-accent w-5"></i> Гарантия гидрофобных свойств</div>
+                <div className="flex items-center gap-2 text-sm"><Icon name="fa-check-circle" className="text-accent w-5" /><span>Срок службы: <span className="font-semibold">до 5 лет</span></span></div>
+                <div className="flex items-center gap-2 text-sm"><Icon name="fa-check-circle" className="text-accent w-5" /><span>Ежегодное обслуживание: <span className="font-semibold">включено</span></span></div>
+                <div className="flex items-center gap-2 text-sm"><Icon name="fa-check-circle" className="text-accent w-5" /><span>Обновление гидрофобности каждый год</span></div>
+                <div className="flex items-center gap-2 text-sm"><Icon name="fa-check-circle" className="text-accent w-5" /><span>Дефектовка и диагностика покрытия</span></div>
+                <div className="flex items-center gap-2 text-sm"><Icon name="fa-check-circle" className="text-accent w-5" /><span>Гарантия гидрофобных свойств</span></div>
               </div>
               <div className="bg-accent/5 rounded-lg p-3 mb-6 border border-accent/10">
-                <p className="text-text-secondary text-xs">
-                  <span className="text-accent font-semibold">Честно о сроках:</span> Максимальный срок — до 5 лет при
-                  ежегодном обслуживании. Реалистично: 3-4 года активной защиты.
-                </p>
+                <p className="text-text-secondary text-xs"><span className="text-accent font-semibold">Честно о сроках:</span> Максимальный срок — до 5 лет при ежегодном обслуживании. Реалистично: 3-4 года активной защиты.</p>
               </div>
-              <button
-                onClick={() => openBookingModal('premium')}
-                className="w-full py-3 bg-accent hover:bg-accent-hover text-bg-primary rounded-lg transition-all duration-300 hover:scale-105"
-              >
-                Записаться
-              </button>
+              <button onClick={() => openBookingModal('premium')} className="w-full py-3 bg-accent hover:bg-accent-hover text-bg-primary rounded-lg transition-all duration-300 hover:scale-105">Записаться</button>
             </motion.div>
           </div>
         </div>
@@ -440,12 +350,12 @@ export default function CeramicClient() {
       <section className="py-16 bg-bg-secondary">
         <div className="container-custom">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-accent/5 rounded-2xl p-6 md:p-8 text-center">
-            <i className="fas fa-shield-alt text-accent text-3xl mb-4"></i>
+            <Icon name="fa-shield-alt" className="text-accent text-3xl mb-4" />
             <h3 className="text-xl md:text-2xl font-bold mb-3">Керамика не защищает от сколов и камней</h3>
             <p className="text-text-secondary mb-6 max-w-2xl mx-auto text-sm">Керамическое покрытие отлично работает против ультрафиолета, реагентов и мелких царапин. Но от камней и сколов на трассе защитят только бронирование пленкой (PPF).</p>
             <div className="grid sm:grid-cols-2 gap-4 text-left mb-6">
-              <div className="bg-bg-element rounded-xl p-5 md:p-6 text-center border border-white/10"><i className="fas fa-tint text-accent mr-2"></i> Керамика: отлично, но от камней — нет</div>
-              <div className="bg-accent/20 rounded-xl p-4 border border-accent"><i className="fas fa-shield-alt text-accent mr-2"></i> Бронирование пленкой (PPF): максимальная защита</div>
+              <div className="bg-bg-element rounded-xl p-5 md:p-6 text-center border border-white/10"><Icon name="fa-tint" className="text-accent mr-2" /> Керамика: отлично, но от камней — нет</div>
+              <div className="bg-accent/20 rounded-xl p-4 border border-accent"><Icon name="fa-shield-alt" className="text-accent mr-2" /> Бронирование пленкой (PPF): максимальная защита</div>
             </div>
             <motion.button onClick={goToPPFCalculator} className="px-6 py-3 bg-accent hover:bg-accent-hover text-bg-primary rounded-lg font-medium transition-all duration-300 flex items-center gap-2 group mx-auto" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <span>Рассчитать бронирование</span>
@@ -483,9 +393,7 @@ export default function CeramicClient() {
             highlight="бронирование мест под ручками в подарок"
             saving="Экономия до 3 000 ₽"
             onClick={() => {
-              if (typeof ym !== 'undefined') {
-                ym(555983697, 'reachGoal', 'promo_complex');
-              }
+              if (typeof ym !== 'undefined') ym(555983697, 'reachGoal', 'promo_complex');
               openModal({ serviceType: 'ceramic', serviceName: 'Керамическое покрытие' });
             }}
           />

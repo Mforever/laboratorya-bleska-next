@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import adviceData from '@/data/advice.json';
 import { PLACEHOLDER_IMAGE } from '@/constants/placeholder';
+import { Icon } from '@/components/ui/Icon';
 
 interface ArticleMeta {
   slug: string;
@@ -103,9 +104,7 @@ export default function AdvicePage() {
             <span className="inline-block text-accent font-medium text-sm uppercase tracking-[0.2em] mb-3">Знания экспертов</span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5">Советы экспертов</h1>
             <div className="w-20 h-1 bg-accent mx-auto mb-6 rounded-full"></div>
-            <p className="text-text-secondary max-w-2xl mx-auto text-lg">
-              Отвечаем на частые вопросы и делимся опытом, чтобы ваш автомобиль всегда сиял
-            </p>
+            <p className="text-text-secondary max-w-2xl mx-auto text-lg">Отвечаем на частые вопросы и делимся опытом, чтобы ваш автомобиль всегда сиял</p>
           </motion.div>
         </div>
 
@@ -136,13 +135,13 @@ export default function AdvicePage() {
                               <div className="p-4">
                                 <h3 className="font-bold text-sm mb-2 line-clamp-2 min-h-[40px] group-hover:text-accent transition-colors">{tip.title}</h3>
                                 <div className="flex items-center justify-between mt-3">
-                                  <span className="text-accent text-xs font-medium inline-flex items-center gap-1">Читать <i className="fas fa-arrow-right text-[10px]"></i></span>
+                                  <span className="text-accent text-xs font-medium inline-flex items-center gap-1">Читать <Icon name="fa-arrow-right" className="text-[10px]" /></span>
                                   <div className="flex items-center gap-2 text-text-secondary/50 text-xs">
                                     <button onClick={(e) => handleLike(tip.slug, e)} className="flex items-center gap-1 hover:text-accent transition-colors">
-                                      <i className={`${likes[tip.slug] ? 'fas fa-heart text-accent' : 'far fa-heart'}`}></i>
+                                      <Icon name={likes[tip.slug] ? 'fas fa-heart' : 'far fa-heart'} className={likes[tip.slug] ? 'text-accent' : ''} />
                                       <span>{getLikeCount(tip.slug)}</span>
                                     </button>
-                                    <div className="flex items-center gap-1"><i className="far fa-eye"></i><span>{getViewCount(tip.slug)}</span></div>
+                                    <div className="flex items-center gap-1"><Icon name="far fa-eye" /><span>{getViewCount(tip.slug)}</span></div>
                                   </div>
                                 </div>
                               </div>
@@ -162,10 +161,10 @@ export default function AdvicePage() {
               {totalPages > 1 && (
                 <>
                   <button onClick={() => goToSlide(Math.max(0, currentIndex - itemsPerView))} className="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 w-8 h-8 rounded-full bg-black/50 hover:bg-accent text-white hover:text-bg-primary transition-all flex items-center justify-center z-10 backdrop-blur-sm">
-                    <i className="fas fa-chevron-left text-sm"></i>
+                    <Icon name="fa-chevron-left" className="text-sm" />
                   </button>
                   <button onClick={() => goToSlide(Math.min(shortTips.length - 1, currentIndex + itemsPerView))} className="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 w-8 h-8 rounded-full bg-black/50 hover:bg-accent text-white hover:text-bg-primary transition-all flex items-center justify-center z-10 backdrop-blur-sm">
-                    <i className="fas fa-chevron-right text-sm"></i>
+                    <Icon name="fa-chevron-right" className="text-sm" />
                   </button>
                 </>
               )}
@@ -199,17 +198,24 @@ export default function AdvicePage() {
                         <div className="flex items-center gap-3 mb-3">
                           <span className="text-accent text-xs font-medium uppercase tracking-wider border-l-2 border-accent pl-2">Статья</span>
                           <div className="flex items-center gap-2 text-text-secondary/40 text-xs">
-                            <div className="flex items-center gap-1"><i className="far fa-eye"></i><span>{getViewCount(article.slug)}</span></div>
+                            <div className="flex items-center gap-1"><Icon name="far fa-eye" /><span>{getViewCount(article.slug)}</span></div>
                             <button onClick={(e) => handleLike(article.slug, e)} className="flex items-center gap-1 hover:text-accent transition-colors">
-                              <i className={`${likes[article.slug] ? 'fas fa-heart text-accent' : 'far fa-heart'}`}></i><span>{getLikeCount(article.slug)}</span>
+                              <Icon name={likes[article.slug] ? 'fas fa-heart' : 'far fa-heart'} className={likes[article.slug] ? 'text-accent' : ''} />
+                              <span>{getLikeCount(article.slug)}</span>
                             </button>
                           </div>
                         </div>
                         <h3 className="font-bold text-xl mb-3 line-clamp-2 group-hover:text-accent transition-colors">{article.title}</h3>
                         <p className="text-text-secondary text-sm line-clamp-3 mb-4">{article.description}</p>
-                        <div className="mt-auto flex items-center justify-between pt-4 border-t border-white/5">
-                          <span className="text-accent text-sm font-medium inline-flex items-center gap-2 group-hover:gap-3 transition-all">Читать статью <i className="fas fa-arrow-right text-xs"></i></span>
-                          <div className="text-text-secondary/40 text-xs"><i className="fas fa-clock mr-1"></i>5-7 мин</div>
+                        <div className="mt-auto flex flex-col sm:flex-row sm:items-center sm:justify-between pt-4 border-t border-white/5 gap-3 sm:gap-2">
+                          <span className="text-accent text-sm font-medium inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+                            Читать статью
+                            <Icon name="fa-arrow-right" className="text-xs" />
+                          </span>
+                          <div className="flex items-center gap-1 text-text-secondary/40 text-xs whitespace-nowrap">
+                            <Icon name="fa-clock" className="text-xs flex-shrink-0" />
+                            <span>5-7 мин</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -223,7 +229,7 @@ export default function AdvicePage() {
         {allArticles.length === 0 && (
           <div className="text-center py-20">
             <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-5">
-              <i className="fas fa-newspaper text-3xl text-accent"></i>
+              <Icon name="fa-newspaper" className="text-3xl text-accent" />
             </div>
             <p className="text-text-secondary">Скоро здесь появятся первые статьи</p>
           </div>

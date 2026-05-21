@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { useModalContext } from '@/contexts/ModalContext';
 import Button from '@/components/ui/Button';
 import CarProtectionCalculator from '@/components/ppf/CarProtectionCalculator';
+import { Icon } from '@/components/ui/Icon';
 import { useState, useEffect } from 'react';
 
 declare const ym: any;
@@ -34,9 +36,7 @@ export default function PPFClient() {
   }, []);
 
   const openBookingModal = () => {
-    if (typeof ym !== 'undefined') {
-      ym(555983697, 'reachGoal', 'form_submit');
-    }
+    if (typeof ym !== 'undefined') ym(555983697, 'reachGoal', 'form_submit');
     openModal({
       serviceType: 'ppf',
       serviceName: 'Бронирование пленкой',
@@ -64,10 +64,10 @@ export default function PPFClient() {
   };
 
   const benefits = [
-    { icon: 'fas fa-shield-alt', title: 'Защита от сколов', description: 'Пленка принимает удар камней и песка на себя' },
-    { icon: 'fas fa-magic', title: 'Самовосстановление', description: 'Мелкие царапины исчезают при нагреве' },
-    { icon: 'fas fa-sun', title: 'Защита от УФ', description: 'Предотвращает выгорание краски' },
-    { icon: 'fas fa-flask', title: 'Химическая стойкость', description: 'Устойчивость к реагентам и битуму' }
+    { icon: 'fa-shield-alt', title: 'Защита от сколов', description: 'Пленка принимает удар камней и песка на себя' },
+    { icon: 'fa-magic', title: 'Самовосстановление', description: 'Мелкие царапины исчезают при нагреве' },
+    { icon: 'fa-sun', title: 'Защита от УФ', description: 'Предотвращает выгорание краски' },
+    { icon: 'fa-flask', title: 'Химическая стойкость', description: 'Устойчивость к реагентам и битуму' }
   ];
 
   const steps = [
@@ -94,13 +94,12 @@ export default function PPFClient() {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-bg-primary overflow-x-hidden">
-      {/* Hero секция с видео */}
+      {/* Hero секция */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src="/images/ppf-hero.jpg" alt="Бронирование пленкой" className="w-full h-full object-cover" loading="eager" />
+          <Image src="/images/ppf-hero.jpg" alt="Бронирование пленкой" fill priority className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-bg-primary via-bg-primary/95 to-bg-primary/90" />
         </div>
-
         <div className="container-custom relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="max-w-3xl">
@@ -109,42 +108,25 @@ export default function PPFClient() {
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">Бронирование пленкой</h1>
                 <p className="text-text-secondary text-lg mb-8 max-w-2xl">Надежная защита кузова от сколов, царапин и реагентов. Сохраним ваш автомобиль в идеальном состоянии.</p>
                 <div className="flex flex-wrap gap-4">
-                  <motion.button
-                    onClick={scrollToCalculator}
-                    className="px-6 py-3 bg-accent hover:bg-accent-hover text-bg-primary rounded-lg font-medium transition-all duration-300 flex items-center gap-2 group"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
+                  <motion.button onClick={scrollToCalculator} className="px-6 py-3 bg-accent hover:bg-accent-hover text-bg-primary rounded-lg font-medium transition-all duration-300 flex items-center gap-2 group" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <span>Рассчитать стоимость</span>
-                    <motion.i className="fas fa-arrow-right text-sm" />
+                    <Icon name="fa-arrow-right" className="text-sm" />
                   </motion.button>
-                  <Button variant="outline" size="large" onClick={() => router.push('/gallery')}>
-                    Смотреть работы
-                  </Button>
+                  <Button variant="outline" size="large" onClick={() => router.push('/gallery')}>Смотреть работы</Button>
                 </div>
               </motion.div>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative hidden lg:block"
-            >
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.2 }} className="relative hidden lg:block">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
                 <div className="relative aspect-video w-full bg-black">
-                  <iframe
-                    src="https://vkvideo.ru/video_ext.php?oid=-99576867&id=456239035&hash=e7efa9a2106eee07&hd=4&autoplay=1&loop=1&mute=1"
-                    className="absolute top-0 left-0 w-full h-full"
-                    allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
-                    frameBorder="0"
-                  />
+                  <iframe src="https://vkvideo.ru/video_ext.php?oid=-99576867&id=456239035&hash=e7efa9a2106eee07&hd=4&autoplay=1&loop=1&mute=1" className="absolute top-0 left-0 w-full h-full" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameBorder="0" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-3">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2"><i className="fas fa-shield-alt text-accent text-sm"></i><span className="text-white text-xs">Защита от сколов</span></div>
-                    <div className="flex items-center gap-2"><i className="fas fa-magic text-accent text-sm"></i><span className="text-white text-xs">Самовосстановление</span></div>
+                    <div className="flex items-center gap-2"><Icon name="fa-shield-alt" className="text-accent text-sm" /><span className="text-white text-xs">Защита от сколов</span></div>
+                    <div className="flex items-center gap-2"><Icon name="fa-magic" className="text-accent text-sm" /><span className="text-white text-xs">Самовосстановление</span></div>
                   </div>
                 </div>
               </div>
@@ -162,10 +144,9 @@ export default function PPFClient() {
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, index) => (
-              <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}
-                className="bg-bg-element rounded-xl p-5 md:p-6 text-center hover:scale-105 transition-all duration-300 flex flex-col h-full">
+              <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="bg-bg-element rounded-xl p-5 md:p-6 text-center hover:scale-105 transition-all duration-300 flex flex-col h-full">
                 <div className="w-14 h-14 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4 flex-shrink-0">
-                  <i className={`${benefit.icon} text-accent text-xl`}></i>
+                  <Icon name={benefit.icon} className="text-accent text-xl" />
                 </div>
                 <h3 className="font-semibold mb-2 text-base md:text-lg break-words">{benefit.title}</h3>
                 <p className="text-text-secondary text-sm md:text-base leading-relaxed break-words hyphens-auto">{benefit.description}</p>
@@ -190,7 +171,7 @@ export default function PPFClient() {
                 <ul className="space-y-2">
                   {film.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-text-secondary text-sm">
-                      <i className="fas fa-check text-accent text-xs mt-1"></i>
+                      <Icon name="fa-check" className="text-accent text-xs mt-1 flex-shrink-0" />
                       <span className="break-words">{feature}</span>
                     </li>
                   ))}
@@ -204,12 +185,7 @@ export default function PPFClient() {
       {/* Калькулятор */}
       <section id="calculator" className="py-20 bg-bg-secondary scroll-mt-24">
         <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
             <span className="inline-block text-accent font-medium text-sm uppercase tracking-[0.2em] mb-4">Калькулятор</span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Рассчитайте стоимость бронирования</h2>
             <p className="text-text-secondary max-w-2xl mx-auto">Выберите зоны на схеме автомобиля, и мы мгновенно рассчитаем цену</p>
@@ -224,15 +200,9 @@ export default function PPFClient() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Готовы защитить авто?</h2>
             <p className="text-text-secondary text-sm mb-8 max-w-2xl mx-auto">
-              {selectedZones.length > 0
-                ? `Вы выбрали ${selectedZones.length} зон на сумму ${totalPrice.toLocaleString()} ₽`
-                : 'Оставьте заявку, и мы поможем подобрать оптимальную защиту для вашего автомобиля'
-              }
+              {selectedZones.length > 0 ? `Вы выбрали ${selectedZones.length} зон на сумму ${totalPrice.toLocaleString()} ₽` : 'Оставьте заявку, и мы поможем подобрать оптимальную защиту для вашего автомобиля'}
             </p>
-            <button
-              onClick={openBookingModal}
-              className="px-6 md:px-8 py-2 md:py-3 bg-accent hover:bg-accent-hover text-bg-primary rounded-lg transition-all hover:scale-105"
-            >
+            <button onClick={openBookingModal} className="px-6 md:px-8 py-2 md:py-3 bg-accent hover:bg-accent-hover text-bg-primary rounded-lg transition-all hover:scale-105">
               {selectedZones.length > 0 ? 'Оформить заказ' : 'Записаться онлайн'}
             </button>
           </motion.div>

@@ -1,8 +1,8 @@
-// components/gallery/GalleryModal.tsx
 'use client';
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Icon } from '@/components/ui/Icon';
 
 interface GalleryModalProps {
   item: {
@@ -24,7 +24,6 @@ const TELEGRAM_CONTACT = '@rudenko_ds';
 
 export const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose, onNext, onPrev }) => {
   const [showBefore, setShowBefore] = useState(true);
-  const [imageError, setImageError] = useState(false);
   const [modalImageError, setModalImageError] = useState(false);
 
   if (!item) return null;
@@ -44,14 +43,14 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose, onNex
         <div className="flex justify-between items-center mb-4">
           <div className="flex gap-2">
             <button onClick={onPrev} className="w-10 h-10 bg-white/10 hover:bg-accent text-white rounded-full flex items-center justify-center transition-colors">
-              <i className="fas fa-chevron-left"></i>
+              <Icon name="fa-chevron-left" />
             </button>
             <button onClick={onNext} className="w-10 h-10 bg-white/10 hover:bg-accent text-white rounded-full flex items-center justify-center transition-colors">
-              <i className="fas fa-chevron-right"></i>
+              <Icon name="fa-chevron-right" />
             </button>
           </div>
           <button onClick={onClose} className="w-10 h-10 bg-white/10 hover:bg-accent text-white rounded-full flex items-center justify-center transition-colors">
-            <i className="fas fa-times"></i>
+            <Icon name="fa-times" />
           </button>
         </div>
 
@@ -84,7 +83,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose, onNex
             />
           ) : modalImageError ? (
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <i className="fas fa-image text-6xl text-text-secondary/30 mb-4"></i>
+              <Icon name="fa-image" className="text-6xl text-text-secondary/30 mb-4" />
               <p className="text-text-secondary">Изображение не загрузилось</p>
             </div>
           ) : (

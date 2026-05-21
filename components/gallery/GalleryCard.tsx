@@ -1,9 +1,9 @@
-// components/gallery/GalleryCard.tsx
 'use client';
 
 import React from 'react';
 import { useGalleryStats } from '@/hooks/useGalleryStats';
 import { PLACEHOLDER_IMAGE } from '@/constants/placeholder';
+import { Icon } from '@/components/ui/Icon';
 
 interface GalleryCardProps {
   item: {
@@ -34,7 +34,7 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({ item, onView }) => {
             title={item.title}
           />
           <div className="absolute top-3 left-3 bg-accent/90 text-bg-primary text-xs font-bold px-2 py-1 rounded-md backdrop-blur-sm flex items-center gap-1">
-            <i className="fas fa-play text-[10px]"></i>
+            <Icon name="fa-play" className="text-[10px]" />
             <span>Видео</span>
           </div>
         </div>
@@ -64,11 +64,11 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({ item, onView }) => {
             onClick={(e) => handleLike(item.id, e)}
             className="flex items-center gap-1 hover:scale-110 transition-transform"
           >
-            <i className={`${likes[item.id] ? 'fas fa-heart text-red-500' : 'far fa-heart text-white'} text-xs`}></i>
+            <Icon name={likes[item.id] ? 'fas fa-heart' : 'far fa-heart'} className={likes[item.id] ? 'text-red-500 text-xs' : 'text-white text-xs'} />
             <span className="text-xs font-medium text-white">{getLikeCount(item.id)}</span>
           </button>
           <div className="flex items-center gap-1">
-            <i className="far fa-eye text-xs text-white"></i>
+            <Icon name="far fa-eye" className="text-xs text-white" />
             <span className="text-xs font-medium text-white">{getViewCount(item.id)}</span>
           </div>
         </div>

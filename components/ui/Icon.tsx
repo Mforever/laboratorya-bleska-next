@@ -10,17 +10,17 @@ import {
   FaHeart, FaRegHeart, FaUser, FaComment, FaImage, FaPaperPlane,
   FaSpinner, FaExclamationTriangle, FaExclamationCircle,
   FaChevronLeft, FaChevronRight, FaChevronDown, FaTimes,
-  FaBars, FaPen, FaStar, FaQrcode, FaMapMarkerAlt, FaCheck,
+  FaBars, FaPen, FaStar, FaQrcode, FaMapMarkerAlt, FaCheck, FaNewspaper,
   FaQuoteLeft, FaQuoteRight, FaPlay, FaPause, FaSearch,
   FaPlus, FaMinus, FaYandex, FaYandexInternational, FaGlobe, FaEnvelope,
-  FaWhatsapp, FaViber, FaSkype, FaTools
+  FaWhatsapp, FaViber, FaSkype, FaTools, FaMagic,
+  FaTelegram  // ← ДОБАВЛЕНО
 } from 'react-icons/fa';
 import {
   SiTelegram,
   SiInstagram,
   SiVk
 } from 'react-icons/si';
-// Для Яндекса используем FaYandex из react-icons/fa, он уже есть выше
 
 // Карта иконок
 export const icons = {
@@ -83,13 +83,29 @@ export const icons = {
   'fa-viber': FaViber,
   'fa-skype': FaSkype,
   'fa-tools': FaTools,
+  'fa-magic': FaMagic,
+  'fa-newspaper': FaNewspaper,
+  'fa-telegram': FaTelegram,
+
+  // Варианты с префиксами
+  'fas fa-heart': FaHeart,
   'far fa-heart': FaRegHeart,
+  'fas fa-eye': FaEye,
+  'far fa-eye': FaEye,
+  'fas fa-arrow-right': FaArrowRight,
+  'fas fa-chevron-left': FaChevronLeft,
+  'fas fa-chevron-right': FaChevronRight,
+  'fas fa-clock': FaClock,
+  'fas fa-newspaper': FaNewspaper,
+  'fas fa-play': FaPlay,
+  'fas fa-image': FaImage,
+  'fas fa-times': FaTimes,
+  'fas fa-check': FaCheck,
 
   // Соцсети (бренды)
   'fab fa-telegram': SiTelegram,
   'fab fa-instagram': SiInstagram,
   'fab fa-vk': SiVk,
-  // Для Яндекса используем обычную иконку
   'fab fa-yandex': FaYandex,
 };
 

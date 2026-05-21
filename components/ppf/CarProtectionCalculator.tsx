@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useModalContext } from '@/contexts/ModalContext';
+import { Icon } from '@/components/ui/Icon';
 
 export interface CarZone {
   id: string;
@@ -113,10 +114,7 @@ const PackageCard: React.FC<{ pkg: Package; isSelected: boolean; onSelect: () =>
         }`}
     >
       <div className="flex items-center gap-3">
-        <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${isSelected ? 'bg-accent text-bg-primary' : 'bg-accent/20 text-accent'
-          }`}>
-          <i className={`${pkg.icon} text-sm`}></i>
-        </div>
+       
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between flex-wrap gap-1">
             <div className="flex items-center gap-1">
@@ -142,9 +140,9 @@ const PackageCard: React.FC<{ pkg: Package; isSelected: boolean; onSelect: () =>
             <p className="text-green-500/70 text-[9px] mt-0.5">Экономия {savedAmount.toLocaleString()} ₽</p>
           )}
         </div>
-        <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${isSelected ? 'border-accent bg-accent' : 'border-text-secondary/50'
-          }`}>
-          {isSelected && <i className="fas fa-check text-bg-primary text-[8px]"></i>}
+       // Чекбокс в конце должен использовать Icon
+        <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${isSelected ? 'border-accent bg-accent' : 'border-text-secondary/50'}`}>
+          {isSelected && <Icon name="fa-check" className="text-bg-primary text-[8px]" />}
         </div>
       </div>
     </button>
