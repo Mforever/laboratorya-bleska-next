@@ -2,31 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Self-host шрифты с WOFF2 */
 @font-face {
   font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
   src: url('/fonts/Montserrat-Regular.woff2') format('woff2');
+  font-weight: 400;
 }
-
 @font-face {
   font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
   src: url('/fonts/Montserrat-SemiBold.woff2') format('woff2');
+  font-weight: 600;
 }
-
 @font-face {
   font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
   src: url('/fonts/Montserrat-Bold.woff2') format('woff2');
+  font-weight: 700;
 }
-
 
 
 /* ===== BASE STYLES ===== */
@@ -374,5 +364,45 @@
   }
   a[href]:after {
     content: " (" attr(href) ")";
+  }
+}
+
+
+/* ===== PERFORMANCE ===== */
+/* Предотвращение forced reflow */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Оптимизация анимаций */
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Оптимизация для тяжелых компонентов */
+.optimize-gpu {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Плавная прокрутка только для якорных ссылок */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Отключаем плавную прокрутку для пользователей с vestibular disorders */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

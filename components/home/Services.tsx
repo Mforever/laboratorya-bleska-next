@@ -16,7 +16,7 @@ const Services: React.FC = () => {
       description: 'Восстановление ЛКП, удаление царапин и голограмм',
       price: 'от 10 000 ₽',
       features: ['Глубокая полировка', 'Защитная полировка', 'Удаление голограмм'],
-      image: '/images/services/polish.jpg',
+      image: '/images/services/polish.webp',
       link: '/polish'
     },
     {
@@ -25,7 +25,7 @@ const Services: React.FC = () => {
       description: 'Надежная защита кузова на срок до 3 лет',
       price: 'от 15 000 ₽',
       features: ['Гидрофобный эффект', 'Защита от УФ', 'Сохранение блеска'],
-      image: '/images/services/ceramic.jpg',
+      image: '/images/services/ceramic.webp',
       link: '/ceramic'
     },
     {
@@ -34,7 +34,7 @@ const Services: React.FC = () => {
       description: 'Защита от сколов, царапин и реагентов',
       price: 'от 10 000 ₽',
       features: ['Прозрачная пленка', 'Самовосстановление', 'Защита камней'],
-      image: '/images/services/ppf.jpg',
+      image: '/images/services/ppf.webp',
       link: '/ppf'
     }
   ];
