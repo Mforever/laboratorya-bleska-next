@@ -1,4 +1,3 @@
-// components/ui/Icon.tsx
 'use client';
 
 import {
@@ -14,7 +13,7 @@ import {
   FaQuoteLeft, FaQuoteRight, FaPlay, FaPause, FaSearch,
   FaPlus, FaMinus, FaYandex, FaYandexInternational, FaGlobe, FaEnvelope,
   FaWhatsapp, FaViber, FaSkype, FaTools, FaMagic,
-  FaTelegram  // ← ДОБАВЛЕНО
+  FaTelegram
 } from 'react-icons/fa';
 import {
   SiTelegram,
@@ -23,8 +22,7 @@ import {
 } from 'react-icons/si';
 
 // Карта иконок
-export const icons = {
-  // Основные иконки
+export const icons: Record<string, any> = {
   'fa-tint': FaTint,
   'fa-shield-alt': FaShieldAlt,
   'fa-sun': FaSun,
@@ -62,7 +60,7 @@ export const icons = {
   'fa-chevron-right': FaChevronRight,
   'fa-chevron-down': FaChevronDown,
   'fa-times': FaTimes,
-  'fa-bars': FaBars,
+  'fa-bars': FaBars,  // ← Убедитесь, что эта строка есть
   'fa-pen': FaPen,
   'fa-star': FaStar,
   'fa-qrcode': FaQrcode,
@@ -87,21 +85,6 @@ export const icons = {
   'fa-newspaper': FaNewspaper,
   'fa-telegram': FaTelegram,
 
-  // Варианты с префиксами
-  'fas fa-heart': FaHeart,
-  'far fa-heart': FaRegHeart,
-  'fas fa-eye': FaEye,
-  'far fa-eye': FaEye,
-  'fas fa-arrow-right': FaArrowRight,
-  'fas fa-chevron-left': FaChevronLeft,
-  'fas fa-chevron-right': FaChevronRight,
-  'fas fa-clock': FaClock,
-  'fas fa-newspaper': FaNewspaper,
-  'fas fa-play': FaPlay,
-  'fas fa-image': FaImage,
-  'fas fa-times': FaTimes,
-  'fas fa-check': FaCheck,
-
   // Соцсети (бренды)
   'fab fa-telegram': SiTelegram,
   'fab fa-instagram': SiInstagram,
@@ -114,10 +97,10 @@ export const Icon: React.FC<{ name: string; className?: string; onClick?: () => 
   className = '',
   onClick
 }) => {
-  const IconComponent = icons[name as keyof typeof icons];
+  const IconComponent = icons[name];
   if (!IconComponent) {
     console.warn(`Icon "${name}" not found`);
-    return null;
+    return <span className={className}>☰</span>; // Запасной вариант
   }
   return <IconComponent className={className} onClick={onClick} />;
 };

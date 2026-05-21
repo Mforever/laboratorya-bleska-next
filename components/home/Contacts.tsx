@@ -91,7 +91,7 @@ const ContactsHome: React.FC = () => {
                   <a
                     href={card.buttonLink}
                     onClick={card.buttonAction}
-                    className="block w-full py-2.5 px-3 bg-accent/10 hover:bg-accent hover:text-bg-primary text-accent text-sm font-medium rounded-lg transition-all duration-300 text-center"
+                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-3 bg-accent/10 hover:bg-accent hover:text-bg-primary text-accent text-sm font-medium rounded-lg transition-all duration-300 text-center"
                     target={card.buttonLink.startsWith('http') ? '_blank' : undefined}
                     rel={card.buttonLink.startsWith('http') ? 'noopener noreferrer' : undefined}
                   >

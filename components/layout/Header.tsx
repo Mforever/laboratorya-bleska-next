@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '../ui/Logo';
+import Icon from '../ui/Icon';
 import { useYandexGoal } from '@/hooks/useYandexGoal';
 import { useModalContext } from '@/contexts/ModalContext';
 
@@ -166,7 +167,7 @@ const Header: React.FC = () => {
             className="lg:hidden w-10 h-10 rounded-lg bg-white/5 hover:bg-accent/20 text-text-secondary hover:text-accent transition-all flex items-center justify-center flex-shrink-0"
             aria-label="Меню"
           >
-            <i className={`fas fa-${isOpen ? 'times' : 'bars'} text-lg`}></i>
+            <Icon name="fa-bars" className="text-lg text-white" />
           </button>
         </nav>
 

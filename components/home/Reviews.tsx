@@ -154,10 +154,10 @@ const Reviews: React.FC = () => {
             <h3 className="text-xl font-bold">Наши клиенты пишут</h3>
             <button
               onClick={openModalHandler}
-              className="px-5 py-2 border border-accent text-accent hover:bg-accent hover:text-bg-primary rounded-lg transition-all text-sm"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2 border border-accent text-accent hover:bg-accent hover:text-bg-primary rounded-lg transition-all text-sm"
             >
-              <Icon name="fa-pen" className="mr-2" />
-              Оставить отзыв
+              <Icon name="fa-pen" className="text-sm" />
+              <span>Оставить отзыв</span>
             </button>
           </div>
 
@@ -201,13 +201,13 @@ const Reviews: React.FC = () => {
 
               {hasMore && (
                 <div className="text-center">
-                  <button
-                    onClick={() => setVisibleCount(prev => prev + 3)}
-                    className="px-6 py-2 border border-accent text-accent hover:bg-accent hover:text-bg-primary rounded-lg transition-all text-sm"
-                  >
-                    <Icon name="fa-chevron-down" className="mr-2" />
-                    Показать ещё
-                  </button>
+                    <button
+                      onClick={() => setVisibleCount(prev => prev + 3)}
+                      className="inline-flex items-center justify-center gap-2 px-6 py-2 border border-accent text-accent hover:bg-accent hover:text-bg-primary rounded-lg transition-all text-sm"
+                    >
+                      <Icon name="fa-chevron-down" className="text-xs" />
+                      <span>Показать ещё</span>
+                    </button>
                 </div>
               )}
             </>
