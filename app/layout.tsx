@@ -1,3 +1,4 @@
+// app/layout.tsx
 import type { Metadata } from 'next';
 import './globals.css';
 import { ModalProvider } from '@/contexts/ModalContext';
@@ -11,10 +12,6 @@ export const metadata: Metadata = {
     template: '%s | Лаборатория блеска'
   },
   description: 'Профессиональный детейлинг в Омске. Полировка, керамическое покрытие, бронирование пленкой.',
-  icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-  },
 };
 
 export default function RootLayout({
@@ -25,15 +22,16 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
+        {/* Preconnect для внешних ресурсов */}
+        <link rel="preconnect" href="https://mc.yandex.ru" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
 
-        {/* Предзагрузка шрифтов */}
-        <link rel="preload" href="/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        {/* Предзагрузка шрифтов (WOFF2, не TTF) */}
+        <link rel="preload" href="/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" fetchPriority="high" />
         <link rel="preload" href="/fonts/Montserrat-SemiBold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
 
-        {/* Яндекс Метрика */}
-        <Script id="yandex-metrika" strategy="afterInteractive">
+        {/* Яндекс Метрика — загружается после интерактива */}
+        <Script id="yandex-metrika" strategy="lazyOnload">
           {`
             (function(m,e,t,r,i,k,a){
               m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

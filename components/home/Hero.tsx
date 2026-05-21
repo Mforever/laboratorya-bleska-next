@@ -16,13 +16,13 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative pt-32 pb-20 overflow-hidden min-h-[600px]">
-      {/* Фоновое изображение с оптимизацией */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-background.jpg"
           alt="Детейлинг студия фон"
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className="object-cover"
           onLoad={() => setImageLoaded(true)}

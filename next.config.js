@@ -19,6 +19,9 @@ const nextConfig = {
     optimizeCss: true,
     optimizePackageImports: ["framer-motion", "react-icons"],
   },
+  // Отключаем полифилы для современных браузеров
+  transpilePackages: [],
+  productionBrowserSourceMaps: false,
 };
 
 module.exports = nextConfig;
