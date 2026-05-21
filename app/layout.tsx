@@ -1,13 +1,12 @@
 // app/layout.tsx
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import './globals.css';
-
-// Правильный путь к ModalProvider
 import { ModalProvider } from '@/contexts/ModalContext';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CookieConsent from '@/components/CookieConsent';
+import './globals.css';
+
 import '@fontsource/montserrat/400.css';
 import '@fontsource/montserrat/600.css';
 import '@fontsource/montserrat/700.css';
@@ -18,6 +17,9 @@ export const metadata: Metadata = {
     template: '%s | Лаборатория блеска'
   },
   description: 'Профессиональный детейлинг в Омске. Полировка, керамическое покрытие, бронирование пленкой.',
+  verification: {
+    yandex: '125dc7f4e9c95fd8',
+  },
 };
 
 export default function RootLayout({
@@ -28,13 +30,25 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <head>
-        {/* Предзагрузка критического CSS */}
+        <meta name="yandex-verification" content="125dc7f4e9c95fd8" />
+
+        {/* Предзагрузка шрифтов */}
         <link
           rel="preload"
-          href="/_next/static/css/app/layout.css"
-          as="style"
+          href="/fonts/Montserrat-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
-        {/* Яндекс Метрика - отложенная загрузка */}
+        <link
+          rel="preload"
+          href="/fonts/Montserrat-Bold.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+
+        {/* Яндекс Метрика */}
         <Script
           id="yandex-metrika"
           strategy="lazyOnload"

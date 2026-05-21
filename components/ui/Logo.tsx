@@ -9,44 +9,31 @@ interface LogoProps {
   className?: string;
 }
 
-const Logo: React.FC<LogoProps> = ({
-  variant = 'light',
-  showText = true,
-  className = ''
-}) => {
+const Logo: React.FC<LogoProps> = ({ variant = 'light', showText = true, className = '' }) => {
   const router = useRouter();
+  const textColor = variant === 'light' ? 'text-white' : 'text-bg-primary';
 
-  const handleClick = () => {
-    router.push('/');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  // Выбираем версию логотипа в зависимости от варианта
-  const logoSrc = variant === 'light'
+  // SVG логотип
+  const logoSvg = variant === 'light'
     ? '/images/logo/logo-white.svg'
     : '/images/logo/logo.svg';
 
   return (
     <button
-      onClick={handleClick}
-      className={`flex items-center gap-3 focus:outline-none group ${className}`}
+      onClick={() => router.push('/')}
+      className={`flex items-center gap-2 transition-opacity hover:opacity-80 ${className}`}
       aria-label="На главную"
     >
-      {/* Логотип изображение */}
-      <div className="relative">
+      <div className="relative w-8 h-8 md:w-10 md:h-10 flex-shrink-0">
         <img
-          src={logoSrc}
+          src={logoSvg}
           alt="Лаборатория блеска"
-          className="h-10 w-auto transition-transform group-hover:scale-105"
+          className="w-full h-full object-contain"
         />
-        {/* Легкое свечение при наведении */}
-        <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/10 rounded-full blur-xl transition-all" />
       </div>
-
-      {/* Текстовое название компании */}
       {showText && (
-        <span className="font-bold text-base text-text-primary">
-          Лаборатория блеска
+        <span className={`font-bold text-sm md:text-base ${textColor} whitespace-nowrap`}>
+          Лаборатория <span className="text-accent">блеска</span>
         </span>
       )}
     </button>
